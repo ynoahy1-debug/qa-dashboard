@@ -18,10 +18,10 @@ export const CallEvaluationModal = () => {
   const [copiedModalNumber, setCopiedModalNumber] = useState(false);
 
   const policyOptions = [
-    'AI Policy Exists & No Quality Policy',
-    'Quality Policy Exists & No AI Policy',
-    'Both AI & Quality Policies Exist',
-    'No Policy in Both Cases',
+    'يوجد بولسي AI ولا يوجد بولسي كوالتي',
+    'يوجد بولسي كوالتي ولا يوجد بولسي AI',
+    'يوجد بولسي AI ويوجد بولسي كوالتي',
+    'لا يوجد بولسي بالحالتين',
   ];
 
   const scoreFields = [
@@ -36,7 +36,7 @@ export const CallEvaluationModal = () => {
   // Local form state for Part 2 fields
   const [formData, setFormData] = useState({
     matching: 'Match',
-    policy: 'No Policy in Both Cases',
+    policy: 'لا يوجد بولسي بالحالتين',
     description: '',
     qa_answer: 100,
     qa_skills: 100,
@@ -51,7 +51,7 @@ export const CallEvaluationModal = () => {
     if (selectedCall) {
       setFormData({
         matching: selectedCall.matching || 'Match',
-        policy: selectedCall.policy || 'No Policy in Both Cases',
+        policy: selectedCall.policy || 'لا يوجد بولسي بالحالتين',
         description: selectedCall.description || '',
         qa_answer: selectedCall.qa_answer !== null && selectedCall.qa_answer !== undefined ? selectedCall.qa_answer : 100,
         qa_skills: selectedCall.qa_skills !== null && selectedCall.qa_skills !== undefined ? selectedCall.qa_skills : 100,
@@ -281,24 +281,24 @@ export const CallEvaluationModal = () => {
             {/* Matching Options */}
             <div className="form-group">
               <label style={{ fontSize: '0.9rem', fontWeight: 800, color: 'var(--text-primary)' }}>
-                1. Match Status with Initial Assessment (Match / Mismatch): *
+                1. Match Status with Initial Assessment (مطابق / غير مطابق): *
               </label>
               <div style={{ display: 'flex', gap: '12px', marginTop: '6px' }}>
                 <button
                   type="button"
-                  className={`btn ${formData.matching === 'Match' ? 'btn-emerald' : 'btn-secondary'}`}
+                  className={`btn ${formData.matching === 'Match' || formData.matching === 'مطابق' ? 'btn-emerald' : 'btn-secondary'}`}
                   onClick={() => setFormData({ ...formData, matching: 'Match' })}
                   style={{ flex: 1 }}
                 >
-                  <CheckCircle2 size={16} /> Match
+                  <CheckCircle2 size={16} /> مطابق (Match)
                 </button>
                 <button
                   type="button"
-                  className={`btn ${formData.matching === 'Mismatch' ? 'btn-rose' : 'btn-secondary'}`}
+                  className={`btn ${formData.matching === 'Mismatch' || formData.matching === 'غير مطابق' ? 'btn-rose' : 'btn-secondary'}`}
                   onClick={() => setFormData({ ...formData, matching: 'Mismatch' })}
                   style={{ flex: 1 }}
                 >
-                  <XCircle size={16} /> Mismatch
+                  <XCircle size={16} /> غير مطابق (Mismatch)
                 </button>
               </div>
             </div>
@@ -307,7 +307,7 @@ export const CallEvaluationModal = () => {
             <div className="form-group">
               <label style={{ fontSize: '0.9rem', fontWeight: 800, color: 'var(--text-primary)', marginBottom: '8px', display: 'flex', alignItems: 'center', gap: '6px' }}>
                 <ShieldCheck size={18} style={{ color: 'var(--accent-amber)' }} />
-                2. Policy Existence Status: * (Select one of the 4 policy cases)
+                2. حالة وجود البولسي (Policy): * (اختر إحدى حالات البولسي الأربعة)
               </label>
 
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '10px' }}>

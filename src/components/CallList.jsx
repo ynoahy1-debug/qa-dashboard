@@ -169,10 +169,10 @@ export const CallList = () => {
                     <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                       <span
                         className={`badge ${
-                          call.matching === 'Match' ? 'badge-matching' : 'badge-mismatch'
+                          call.matching === 'Match' || call.matching === 'مطابق' ? 'badge-matching' : 'badge-mismatch'
                         }`}
                       >
-                        {call.matching}
+                        {call.matching === 'Match' ? 'مطابق' : call.matching === 'Mismatch' ? 'غير مطابق' : call.matching}
                       </span>
                       <span style={{ fontWeight: 800, color: 'var(--text-primary)' }}>
                         ({call.final_score}{typeof call.final_score === 'number' ? '%' : ''})
