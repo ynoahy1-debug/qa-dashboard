@@ -83,9 +83,9 @@ export const CallEvaluationModal = () => {
 
   if (!selectedCall) return null;
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    saveEvaluation(selectedCall.id, formData);
+    await saveEvaluation(selectedCall.id, formData);
     alert('Re-evaluation form saved successfully and registered under your account!');
   };
 

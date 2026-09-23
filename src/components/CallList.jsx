@@ -25,15 +25,15 @@ export const CallList = () => {
     }, 2000);
   };
 
-  const handleStartEvaluation = (call) => {
+  const handleStartEvaluation = async (call) => {
     if (call.status === 'completed' || (call.lockedBy && call.lockedBy.userId === currentUser?.id)) {
       setSelectedCall(call);
       return;
     }
 
-    const res = lockCall(call.id);
-    if (!res.success) {
-      alert(res.message);
+    const res = await lockCall(call.id);
+    if (res && res.success === false) {
+      alert(res.message || 'Unable to lock call');
     }
   };
 
